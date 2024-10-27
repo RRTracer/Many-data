@@ -1,0 +1,22 @@
+**********************************************************************************************************************************************************************************************************************************
+
+Documentation : commande NMAP : 
+
+La commande `nmap -sS -sV -O -p- -oA [ip de la target]` exécute une analyse réseau complète sur l'adresse IP cible spécifiée. Voici une description détaillée de chaque option utilisée dans cette commande :
+
+1. **`-sS`** : Scan SYN (ou scan furtif). Ce type de scan envoie des paquets SYN (utilisés pour établir une connexion TCP) à la cible et attend les réponses. Si la cible répond avec un SYN-ACK, le port est marqué comme ouvert. Si elle répond avec un RST, le port est marqué comme fermé. Ce scan est moins bruyant qu'un scan complet des trois étapes de la poignée de main TCP (SYN, SYN-ACK, ACK) et peut parfois passer inaperçu par les pare-feux et systèmes de détection d'intrusion.
+
+2. **`-sV`** : Détection de version. Cette option permet de déterminer les versions des services qui tournent sur les ports ouverts. Nmap envoie diverses requêtes pour obtenir des bannières et autres informations qui aident à identifier les services.
+
+3. **`-O`** : Détection du système d'exploitation. Nmap essaie de deviner le système d'exploitation de la cible en analysant les caractéristiques des paquets de réponse. Il compare ces caractéristiques à une base de données de signatures pour faire son estimation.
+
+4. **`-p-`** : Scanne tous les 65535 ports TCP. Par défaut, Nmap ne scanne qu'une liste restreinte de ports communs, mais cette option force Nmap à scanner tous les ports possibles.
+
+5. **`-oA [nom_de_fichier]`** : Sortie en trois formats (normal, greppable et XML) avec le préfixe de fichier spécifié. Par exemple, si vous spécifiez `scan`, les fichiers générés seront `scan.nmap`, `scan.gnmap` et `scan.xml`. Cela permet de sauvegarder les résultats de l'analyse dans différents formats pour une analyse ultérieure.
+
+6. **`[ip de la target]`** : L'adresse IP de la cible que vous souhaitez analyser. Remplacez `[ip de la target]` par l'adresse IP réelle de la machine cible.
+
+En résumé, cette commande Nmap effectue un scan SYN complet de tous les ports TCP de la cible, détecte les versions des services, essaie de déterminer le système d'exploitation et enregistre les résultats dans plusieurs formats de sortie.
+
+
+**********************************************************************************************************************************************************************************************************************************

