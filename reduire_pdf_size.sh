@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# script de Eric Bachard
 
 entree=$1
 
