@@ -73,6 +73,7 @@ echo "Modification du fichier /boot/grub/grub.cfg pour ajouter l'option --unrest
 # Modifier les lignes de menu Debian et Windows pour ajouter --unrestricted après "os"
 sed -i '/menuentry.*Debian/ s/\(os\)/\1 --unrestricted/' /boot/grub/grub.cfg
 sed -i '/menuentry.*Windows/ s/\(os\)/\1 --unrestricted/' /boot/grub/grub.cfg
+sed -i '/menuentry.*Arch Linux/ s/\(os\)/\1 --unrestricted/' /boot/grub/grub.cfg
 
 
 echo "GRUB a été configuré avec succès et protégé par un mot de passe."

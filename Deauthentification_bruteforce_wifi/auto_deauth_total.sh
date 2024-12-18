@@ -71,8 +71,12 @@ IFS=',' read -r -a exclude_array <<< "$exclude_bssids"
 
 # Scanner les réseaux Wi-Fi à proximité avec airodump-ng et extraire les BSSID et canaux
 echo "[*] Scanning des réseaux Wi-Fi à proximité..."
-networks=$(airodump-ng --write-interval 1 --output-format csv -w - $interface | awk -F, 'NR>2 {print $1, $4}' | grep -v "BSSID" | grep -v "^$")
-
+i=0
+while [ $i -eq 300 ]
+do
+  networks=$(airodump-ng --write-interval 1 --output-format csv -w - $interface | awk -F, 'NR>2 {print $1, $4}' | grep -v "BSSID" | grep -v "^$") 
+  ((i++))
+done
 # Boucle pour chaque réseau détecté
 while IFS= read -r line; do
   bssid=$(echo $line | awk '{print $1}')
