@@ -1,4 +1,3 @@
-#import des bibliothèque necessaire au scan arp 
 from scapy.all import *
 
 
